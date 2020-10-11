@@ -27,7 +27,7 @@
 
 3. srt  字幕文件，只保留 `en.srt` 和 `zh-CN.srt` 结尾的字幕文件，删除其他语言的字幕文件
 
-4. 修改剩下文件的文件名，去掉文件名的空格，根据 course、class、section 的序号，给文件名添加序号。
+4. 修改剩下文件的文件名，去掉文件名的空格，根据 course、class、section 的序号，给文件名添加序号。包括 mp4 文件和 srt 文件。
 
    例子：
    
@@ -40,6 +40,6 @@
    - 修改后的文件名：
    
    ```
-   1 introduction-tensorflow\1_a-new-programming-paradigm\01_a-new-programming-paradigm\1.1.1 introduction a conversation with andrew ng.mp4```
+   1 introduction-tensorflow\1_a-new-programming-paradigm\01_a-new-programming-paradigm\1.1.1 introduction a conversation with andrew ng.mp4
    ```
 
