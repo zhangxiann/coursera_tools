@@ -1,6 +1,6 @@
 import os
 import glob
-
+from txt_subtitle_tools import delete_n
 
 root_dir = 'D:\coursera'
 
@@ -35,7 +35,11 @@ for course in os.listdir(root_dir):
                         # 删除 txt 文件
                         txt_files = glob.glob(os.path.join(section_dir, '*.txt'))
                         for txt_file in txt_files:
-                            os.remove(txt_file)
+                            # 保留英语的 txt 字幕，并去掉换行符
+                            if not txt_file.endswith("en.txt") :
+                                os.remove(txt_file)
+                            else:
+                                delete_n(txt_file)
 
                         # 只保留 en.srt 文件和 zh-CN.srt 文件，删除其他 srt 文件
                         srt_files = glob.glob(os.path.join(section_dir, '*.srt'))
@@ -72,4 +76,3 @@ for course in os.listdir(root_dir):
                             target_srt_file = os.path.join(path, target_file_name)
                             os.rename(origin_srt_file, target_srt_file)
                             print(target_file_name)
-
