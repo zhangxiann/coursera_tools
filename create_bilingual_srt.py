@@ -9,62 +9,86 @@ import glob
 
 root_dir = 'D:\coursera'
 
-# for course in os.listdir(root_dir):
-#     course_dir = os.path.join(root_dir, course)
-#     if os.path.isdir(course_dir):
-#         coursera_dir = os.path.join(root_dir, course)
-#         for classes in os.listdir(coursera_dir):
-#             classes_dir = os.path.join(coursera_dir, classes)
-#             if os.path.isdir(classes_dir):
-#                 # courses.append(course)
-#                 for section in os.listdir(classes_dir):
-#                     section_dir = os.path.join(classes_dir, section)
-#                     if os.path.isdir(section_dir):
-#                         english_srt_files = glob.glob(os.path.join(section_dir, '*en.srt'))
-#                         for english_srt_file in english_srt_files:
-#                             chinese_srt_file = english_srt_file[:-6] + 'zh CN.srt'
-#                             if os.path.exists(chinese_srt_file):
-#                                 bilingual_srt_file = english_srt_file[:-6] + 'bilingual.srt'
-#                                 f_chinese=open(chinese_srt_file, "r")
-#                                 f_english=open(english_srt_file, "r")
-#                                 f_bilingual=open(bilingual_srt_file, "w+")
+all_count =0
+missing_count =0
+missing_srt_log = os.path.join(root_dir, 'missing_srt.log')
+f_log = open(missing_srt_log, "w+")
+
+for course in os.listdir(root_dir):
+    course_dir = os.path.join(root_dir, course)
+    if os.path.isdir(course_dir):
+        coursera_dir = os.path.join(root_dir, course)
+        for classes in os.listdir(coursera_dir):
+            classes_dir = os.path.join(coursera_dir, classes)
+            if os.path.isdir(classes_dir):
+                # courses.append(course)
+                for section in os.listdir(classes_dir):
+                    section_dir = os.path.join(classes_dir, section)
+                    if os.path.isdir(section_dir):
+                        english_srt_files = glob.glob(os.path.join(section_dir, '*en.srt'))
+
+                        for english_srt_file in english_srt_files:
+                            all_count =all_count+1
+                            chinese_srt_file = english_srt_file[:-6] + 'zh CN.srt'
+                            if os.path.exists(chinese_srt_file):
+                                bilingual_srt_file = english_srt_file[:-6] + 'bilingual.srt'
+                                f_chinese = open(chinese_srt_file, "rb")
+                                f_english = open(english_srt_file, "rb")
+                                f_bilingual = open(bilingual_srt_file, "wb+")
+
+                                chinese = f_chinese.read()
+                                english = f_english.read()
+
+                                # python bytes和str两种类型可以通过函数encode()和decode()相互转换，
+                                # str→bytes：encode()方法。str通过encode()方法可以转换为bytes。
+                                # bytes→str：decode()方法。如果我们从网络或磁盘上读取了字节流，那么读到的数据就是bytes。
+                                # 要把bytes变为str，就需要用decode()方法。
+
+                                f_bilingual.write(chinese)
+                                # 由于上面打开文件时使用了 b，表示使用字节流，使用 encode() 把 str 转为 byte，再写入文件
+                                f_bilingual.write('\n'.encode())
+                                # 由于上面打开文件时使用了 b，表示使用字节流，使用 encode() 把 str 转为 byte，再写入文件
+                                f_bilingual.write('\n'.encode())
+                                f_bilingual.write(english)
+
+                                f_chinese.close()
+                                f_english.close()
+                                f_bilingual.close()
+                            else:
+                                # 如果没有对应的中文字幕，则记录下来
+                                missing_count = missing_count+1
+                                f_log.write(english_srt_file+'\n')
+
+f_log.write("%d/%d"%(missing_count, all_count))
+f_log.close()
+
+
+## demo
+
+# english_srt_file = 'D:\coursera\\1 introduction-tensorflow\\2_introduction-to-computer-vision\\01_introduction-to-computer-vision\\1.2.1.2 an introduction to computer vision.en.srt'
 #
-#                                 chinese = f_chinese.read()
-#                                 english = f_english.read()
+# chinese_srt_file = english_srt_file[:-6] + 'zh CN.srt'
+# if os.path.exists(chinese_srt_file):
+#     bilingual_srt_file = english_srt_file[:-6] + 'bilingual.srt'
+#     f_chinese = open(chinese_srt_file, "rb")
+#     f_english = open(english_srt_file, "rb")
+#     f_bilingual = open(bilingual_srt_file, "wb+")
 #
-#                                 f_bilingual.write(chinese)
-#                                 f_bilingual.write('\n')
-#                                 f_bilingual.write(english)
+#     chinese = f_chinese.read()
+#     english = f_english.read()
 #
+#     # python bytes和str两种类型可以通过函数encode()和decode()相互转换，
+#     # str→bytes：encode()方法。str通过encode()方法可以转换为bytes。
+#     # bytes→str：decode()方法。如果我们从网络或磁盘上读取了字节流，那么读到的数据就是bytes。
+#     # 要把bytes变为str，就需要用decode()方法。
 #
-#                                 f_chinese.close()
-#                                 f_english.close()
-#                                 f_bilingual.close()
-
-english_srt_file = 'D:\coursera\\1 introduction-tensorflow\\2_introduction-to-computer-vision\\01_introduction-to-computer-vision\\1.2.1.2 an introduction to computer vision.en.srt'
-
-chinese_srt_file = english_srt_file[:-6] + 'zh CN.srt'
-if os.path.exists(chinese_srt_file):
-    bilingual_srt_file = english_srt_file[:-6] + 'bilingual.srt'
-    f_chinese = open(chinese_srt_file, "rb")
-    f_english = open(english_srt_file, "rb")
-    f_bilingual = open(bilingual_srt_file, "wb+")
-
-    chinese = f_chinese.read()
-    english = f_english.read()
-
-    # python bytes和str两种类型可以通过函数encode()和decode()相互转换，
-    # str→bytes：encode()方法。str通过encode()方法可以转换为bytes。
-    # bytes→str：decode()方法。如果我们从网络或磁盘上读取了字节流，那么读到的数据就是bytes。
-    # 要把bytes变为str，就需要用decode()方法。
-
-    f_bilingual.write(chinese)
-    # 由于上面打开文件时使用了 b，表示使用字节流，使用 encode() 把 str 转为 byte，再写入文件
-    f_bilingual.write('\n'.encode())
-    # 由于上面打开文件时使用了 b，表示使用字节流，使用 encode() 把 str 转为 byte，再写入文件
-    f_bilingual.write('\n'.encode())
-    f_bilingual.write(english)
-
-    f_chinese.close()
-    f_english.close()
-    f_bilingual.close()
+#     f_bilingual.write(chinese)
+#     # 由于上面打开文件时使用了 b，表示使用字节流，使用 encode() 把 str 转为 byte，再写入文件
+#     f_bilingual.write('\n'.encode())
+#     # 由于上面打开文件时使用了 b，表示使用字节流，使用 encode() 把 str 转为 byte，再写入文件
+#     f_bilingual.write('\n'.encode())
+#     f_bilingual.write(english)
+#
+#     f_chinese.close()
+#     f_english.close()
+#     f_bilingual.close()
