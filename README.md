@@ -1,5 +1,9 @@
 # coursera_tools
 
+
+
+## rename.py
+
 用于处理下载好的 coursera 课程。
 
 文件目录结构如下：
@@ -43,3 +47,20 @@
    1 introduction-tensorflow\1_a-new-programming-paradigm\01_a-new-programming-paradigm\1.1.1 introduction a conversation with andrew ng.mp4
    ```
 
+
+
+## make_target_dir.py
+
+创建目标文件夹，用于存放添加字幕后的视频。
+
+
+
+## create_bilingual_srt.py
+
+把中文字幕和英文字幕合并，创建双语字幕。
+
+- 英文字幕 1.2.1.2 an introduction to computer vision.en.srt
+- 中文字幕 1.2.1.2 an introduction to computer vision.zh-CN.srt
+- 双语字幕 1.2.1.2 an introduction to computer vision.bilingual.srt
+
+实际上，是把英语字幕的内容，直接添加到中文字幕内容的后面即可。
