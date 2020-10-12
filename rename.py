@@ -51,7 +51,7 @@ for course in os.listdir(root_dir):
 
                             file_num = origin_file_name[0:2]
                             file_num = file_num[1:2]  if file_num.startswith('0') else file_num
-                            file_name = ' '.join(origin_file_name.split('_')[1:])
+                            file_name = ' '.join(origin_file_name.split('-')[1:])
                             target_file_name = course_num+'.'+class_num+'.'+section_num+'.'+file_num+' '+file_name
                             target_mp4_file = os.path.join(path, target_file_name)
                             os.rename(origin_mp4_file, target_mp4_file)
@@ -67,7 +67,7 @@ for course in os.listdir(root_dir):
 
                             file_num = origin_file_name[0:2]
                             file_num = file_num[1:2]  if file_num.startswith('0') else file_num
-                            file_name = ' '.join(origin_file_name.split('_')[1:])
+                            file_name = ' '.join(origin_file_name.split('-')[1:])
                             target_file_name = course_num+'.'+class_num+'.'+section_num+'.'+file_num+' '+file_name
                             target_srt_file = os.path.join(path, target_file_name)
                             os.rename(origin_srt_file, target_srt_file)
