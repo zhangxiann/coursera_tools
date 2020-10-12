@@ -57,6 +57,7 @@ for course in os.listdir(root_dir):
                             file_num = origin_file_name[0:2]
                             file_num = file_num[1:2]  if file_num.startswith('0') else file_num
                             file_name = re.split('[-|_]',origin_file_name)[1:]
+                            file_name = ' '.join(file_name)
                             #file_name = ' '.join(origin_file_name.split('-')[1:])
                             target_file_name = course_num+'.'+class_num+'.'+section_num+'.'+file_num+' '+file_name
                             target_mp4_file = os.path.join(path, target_file_name)
@@ -74,6 +75,7 @@ for course in os.listdir(root_dir):
                             file_num = origin_file_name[0:2]
                             file_num = file_num[1:2]  if file_num.startswith('0') else file_num
                             file_name = re.split('[-|_]', origin_file_name)[1:]
+                            file_name = ' '.join(file_name)
                             #file_name = ' '.join(origin_file_name.split('-')[1:])
                             target_file_name = course_num+'.'+class_num+'.'+section_num+'.'+file_num+' '+file_name
                             target_srt_file = os.path.join(path, target_file_name)
