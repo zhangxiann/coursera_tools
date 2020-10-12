@@ -41,6 +41,17 @@ for course in os.listdir(root_dir):
                                 os.remove(txt_file)
                             else:
                                 delete_n(txt_file)
+                                (path, origin_file_name) = os.path.split(txt_file)
+
+                                file_num = origin_file_name[0:2]
+                                file_num = file_num[1:2] if file_num.startswith('0') else file_num
+                                file_name = re.split('[-|_]', origin_file_name)[1:]
+                                file_name = ' '.join(file_name)
+                                # file_name = ' '.join(origin_file_name.split('-')[1:])
+                                target_file_name = course_num + '.' + class_num + '.' + section_num + '.' + file_num + ' ' + file_name
+                                target_txt_file = os.path.join(path, target_file_name)
+                                os.rename(txt_file, target_txt_file)
+
 
                         # 只保留 en.srt 文件和 zh-CN.srt 文件，删除其他 srt 文件
                         srt_files = glob.glob(os.path.join(section_dir, '*.srt'))

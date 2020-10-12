@@ -22,4 +22,3 @@ def delete_n(txt_file):
     f.close()
 
 
-delete_n('C:\\Users\\lenovo\\Desktop\\01_introduction-a-conversation-with-andrew-ng.en.txt')
