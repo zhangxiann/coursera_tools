@@ -64,3 +64,9 @@
 - 双语字幕 1.2.1.2 an introduction to computer vision.bilingual.srt
 
 实际上，是把英语字幕的内容，直接添加到中文字幕内容的后面即可。
+
+
+
+# 字幕翻译项目
+
+字幕翻译项目：请查看这里：[https://github.com/zhangxiann/Tensorflow-In-Practice](https://github.com/zhangxiann/Tensorflow-In-Practice)
