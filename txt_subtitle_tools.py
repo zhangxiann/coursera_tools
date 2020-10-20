@@ -11,6 +11,7 @@ import os
 #     f.write(data)
 #     f.close()
 
+# 删除换行符
 def delete_n(txt_file):
     f = open(txt_file, "r", encoding='utf-8')
     data = f.read()

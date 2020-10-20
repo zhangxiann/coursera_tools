@@ -6,18 +6,19 @@
 
 import os
 import glob
+import enviroments
 
-root_dir = 'D:\coursera'
+
 
 all_count =0
 missing_count =0
-missing_srt_log = os.path.join(root_dir, 'missing_srt.log')
+missing_srt_log = os.path.join(enviroments.root_dir, 'missing_srt.log')
 f_log = open(missing_srt_log, "w+")
 
-for course in os.listdir(root_dir):
-    course_dir = os.path.join(root_dir, course)
+for course in os.listdir(enviroments.root_dir):
+    course_dir = os.path.join(enviroments.root_dir, course)
     if os.path.isdir(course_dir):
-        coursera_dir = os.path.join(root_dir, course)
+        coursera_dir = os.path.join(enviroments.root_dir, course)
         for classes in os.listdir(coursera_dir):
             classes_dir = os.path.join(coursera_dir, classes)
             if os.path.isdir(classes_dir):

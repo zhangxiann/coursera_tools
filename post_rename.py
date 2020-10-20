@@ -3,8 +3,8 @@
 import os
 import glob
 
+import enviroments
 
-root_dir = 'D:\coursera'
 
 
 # 源文件名
@@ -13,10 +13,10 @@ root_dir = 'D:\coursera'
 # 目标文件名
 # 1 introduction-tensorflow\1_a-new-programming-paradigm\01_a-new-programming-paradigm\1.1.1 introduction a conversation with andrew ng.mp4
 
-for course in os.listdir(root_dir):
-    course_dir = os.path.join(root_dir, course)
+for course in os.listdir(enviroments.root_dir):
+    course_dir = os.path.join(enviroments.root_dir, course)
     if os.path.isdir(course_dir):
-        coursera_dir = os.path.join(root_dir, course)
+        coursera_dir = os.path.join(enviroments.root_dir, course)
         for classes in os.listdir(coursera_dir):
             classes_dir = os.path.join(coursera_dir, classes)
             if os.path.isdir(classes_dir):
